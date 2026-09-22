@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
         groupNo: g.groupNo,
         shortName: g.shortName,
         score: privateG?.score ?? g.items.length,
-        max: privateG?.max ?? 20,
+        max: privateG?.max ?? 18,
         items: g.items,
       }
     })
