@@ -97,7 +97,7 @@ function doPost(e) {
       data.thirdGroup || '',
       data.thirdGroupInternal || '',
       Number(data.selectedCount || 0),
-      Number(data.totalQuestions || 120)
+      Number(data.totalQuestions || 108)
     ]);
 
     // 2) Gửi email tư vấn viên
@@ -166,7 +166,7 @@ function sendAdvisorEmail_(data) {
         ' (' +
         (group.score != null ? group.score : items.length) +
         '/' +
-        (group.max || 20) +
+        (group.max || 18) +
         ')</div>' +
         '<ul style="margin:0;padding-left:18px;color:#334;">';
       for (var j = 0; j < items.length; j++) {
@@ -195,7 +195,7 @@ function sendAdvisorEmail_(data) {
     row_('Lớp', data.grade || '—') +
     row_('Trường', data.school || '—') +
     row_('Thời gian', when) +
-    row_('Đã chọn', (data.selectedCount || 0) + ' / ' + (data.totalQuestions || 120)) +
+    row_('Đã chọn', (data.selectedCount || 0) + ' / ' + (data.totalQuestions || 108)) +
     '</table>' +
     '<div style="margin:20px 0 10px;font-weight:800;font-size:15px;">Điểm 6 nhóm</div>' +
     '<table style="width:100%;border-collapse:collapse;background:#f7fafc;border-radius:12px;overflow:hidden;">' +
@@ -246,7 +246,7 @@ function sendAdvisorEmail_(data) {
     '\nĐã chọn: ' +
     (data.selectedCount || 0) +
     '/' +
-    (data.totalQuestions || 120) +
+    (data.totalQuestions || 108) +
     '\n\nĐiểm:\n' +
     'Nhóm 1: ' +
     (data.group1 || '') +

@@ -176,7 +176,7 @@ export default function AssessmentApp() {
       if (saved.form) setForm({ ...EMPTY_FORM, ...saved.form })
       if (Array.isArray(saved.selected)) setSelected(new Set(saved.selected))
       if (typeof saved.pageIndex === 'number') setPageIndex(Math.max(0, saved.pageIndex))
-      if (Array.isArray(saved.questions) && saved.questions.length === 120) {
+      if (Array.isArray(saved.questions) && saved.questions.length === 108) {
         setQuestions(saved.questions)
       }
       if (saved.phase && saved.phase !== 'result' && saved.phase !== 'landing') {
@@ -234,7 +234,7 @@ export default function AssessmentApp() {
       form,
       selected: Array.from(selected),
       pageIndex,
-      questions: questions.length === 120 ? questions : undefined,
+      questions: questions.length === 108 ? questions : undefined,
     })
   }, [hydrated, phase, form, selected, pageIndex, questions])
 
@@ -340,8 +340,8 @@ export default function AssessmentApp() {
         if (!response.ok || !Array.isArray(payload.questions)) {
           throw new Error(payload.error || 'Không thể tải câu hỏi.')
         }
-        if (payload.questions.length !== 120) {
-          throw new Error(`Bộ câu hỏi chưa đủ 120 mệnh đề (${payload.questions.length}/120).`)
+        if (payload.questions.length !== 108) {
+          throw new Error(`Bộ câu hỏi chưa đủ 108 mệnh đề (${payload.questions.length}/108).`)
         }
         setQuestions(payload.questions)
       }
@@ -426,7 +426,7 @@ export default function AssessmentApp() {
             <span className="pill">TRẮC NGHIỆM SỞ THÍCH HOLLAND</span>
             <h1>Khám phá nhóm sở thích nổi trội của bạn</h1>
             <p className="hero-lead">
-              Đủ 120 mệnh đề, nhưng mỗi màn hình chỉ hiển thị 6 mô tả để bạn dễ đọc và chọn đúng với bản thân.
+              Đủ 108 mệnh đề, nhưng mỗi màn hình chỉ hiển thị 6 mô tả để bạn dễ đọc và chọn đúng với bản thân.
             </p>
             <div className="hero-actions">
               {hasResume ? (
@@ -447,11 +447,11 @@ export default function AssessmentApp() {
             </div>
             <div className="benefit-grid">
               <div>
-                <strong>120/120</strong>
+                <strong>108/108</strong>
                 <span>Mệnh đề được giữ đầy đủ</span>
               </div>
               <div>
-                <strong>20 màn hình</strong>
+                <strong>18 màn hình</strong>
                 <span>Mỗi màn hình chỉ 6 mô tả</span>
               </div>
               <div>
@@ -572,7 +572,7 @@ export default function AssessmentApp() {
             <div>
               <b>1</b>
               <p>
-                Bài có <strong>120 mệnh đề</strong>, chia thành <strong>20 màn hình</strong>, mỗi màn
+                Bài có <strong>108 mệnh đề</strong>, chia thành <strong>18 màn hình</strong>, mỗi màn
                 hình 6 mô tả.
               </p>
             </div>
@@ -649,7 +649,7 @@ export default function AssessmentApp() {
                   form,
                   selected: Array.from(selected),
                   pageIndex,
-                  questions: questions.length === 120 ? questions : undefined,
+                  questions: questions.length === 108 ? questions : undefined,
                 })
 
                 setAllowExit(true)
@@ -785,7 +785,7 @@ export default function AssessmentApp() {
           <span className="pill">HOÀN THÀNH</span>
           <h2>Kết quả của bạn</h2>
           <p className="muted">
-            Bạn đã xem đủ 120 mệnh đề. Điểm dưới đây là số lựa chọn phù hợp với bạn ở từng nhóm.
+            Bạn đã xem đủ 108 mệnh đề. Điểm dưới đây là số lựa chọn phù hợp với bạn ở từng nhóm.
           </p>
 
           <div className="result-bars">

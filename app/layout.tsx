@@ -9,13 +9,13 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Trắc nghiệm sở thích Holland | 120 mệnh đề',
+  title: 'Trắc nghiệm sở thích Holland | 108 mệnh đề',
   description:
-    'Khám phá nhóm sở thích nổi trội qua bài trắc nghiệm Holland 120 mệnh đề. Giao diện đơn giản, kết quả tự động tổng hợp 6 nhóm.',
+    'Khám phá nhóm sở thích nổi trội qua bài trắc nghiệm Holland 108 mệnh đề. Giao diện đơn giản, kết quả tự động tổng hợp 6 nhóm.',
   robots: { index: true, follow: true },
   openGraph: {
     title: 'Trắc nghiệm sở thích Holland',
-    description: '120 mệnh đề · 20 màn hình · Tự động chấm 6 nhóm',
+    description: '108 mệnh đề · 18 màn hình · Tự động chấm 6 nhóm',
     type: 'website',
     locale: 'vi_VN',
   },
