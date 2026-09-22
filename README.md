@@ -1,12 +1,12 @@
-# Holland 120 câu → Google Sheet + Gmail tư vấn viên
+# Holland 108 câu → Google Sheet + Gmail tư vấn viên
 
 Flow:
 
-`Form thông tin → 120 mệnh đề → chấm 6 nhóm ở server → học sinh thấy Nhóm 1–6 → ghi 1 dòng Google Sheet + gửi email Gmail cho tư vấn viên`
+`Form thông tin → 108 mệnh đề → chấm 6 nhóm ở server → học sinh thấy Nhóm 1–6 → ghi 1 dòng Google Sheet + gửi email Gmail cho tư vấn viên`
 
 ## Tính năng
 
-- 120 mệnh đề (6 nhóm × 20), chia 20 màn hình × 6 câu
+- 108 mệnh đề (6 nhóm × 18), chia 18 màn hình × 6 câu
 - Lưu tiến độ **localStorage** (F5 không mất bài)
 - Nút **Tiếp tục bài đang làm** / **Làm mới từ đầu**
 - Validate SĐT, hiển thị số ô đã chọn, nút Làm lại
@@ -20,7 +20,7 @@ npm install
 npm run dev
 ```
 
-Mở `http://localhost:3000`. Không cấu hình vẫn làm đủ 120 câu và xem kết quả; chỉ phần đồng bộ sẽ báo chưa kết nối.
+Mở `http://localhost:3000`. Không cấu hình vẫn làm đủ 108 câu và xem kết quả; chỉ phần đồng bộ sẽ báo chưa kết nối.
 
 Kiểm tra: `http://localhost:3000/api/health`
 
@@ -74,7 +74,7 @@ Restart `npm run dev`. `/api/health` phải báo `googleSheetConfigured: true`.
 ## 4. Email tư vấn viên nhận gì?
 
 - Họ tên, SĐT, email, lớp, trường, thời gian
-- Điểm 6 nhóm (vd. 12/20)
+- Điểm 6 nhóm (vd. 12/18)
 - Nhóm nổi trội + Top 2 / Top 3 (tên nội bộ: Kỹ thuật, Nghiên cứu…)
 - **Tóm tắt đáp án đã chọn** theo từng nhóm (danh sách mệnh đề học sinh đã tick)
 
@@ -129,4 +129,4 @@ GOOGLE_APPS_SCRIPT_TOKEN=mot-token-rieng
 
 ## 9. Lưu ý nội dung trắc nghiệm
 
-Bộ 120 mệnh đề là bộ triển khai theo yêu cầu dự án. Trước khi dùng chính thức như công cụ chuẩn hóa, nên thay bằng phiên bản đã được chuyên gia/đơn vị sở hữu nội dung duyệt.
+Bộ 108 mệnh đề là bộ triển khai theo yêu cầu dự án. Trước khi dùng chính thức như công cụ chuẩn hóa, nên thay bằng phiên bản đã được chuyên gia/đơn vị sở hữu nội dung duyệt.
