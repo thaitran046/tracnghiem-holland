@@ -234,7 +234,7 @@ export default function AssessmentApp() {
       form,
       selected: Array.from(selected),
       pageIndex,
-      questions: questions.length === 120 ? questions : undefined,
+      questions: questions.length === 108 ? questions : undefined,
     })
   }, [hydrated, phase, form, selected, pageIndex, questions])
 
