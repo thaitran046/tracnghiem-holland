@@ -619,14 +619,6 @@ export default function AssessmentApp() {
           aria-labelledby="exit-modal-title"
         >
           <div className="exit-modal">
-            <button
-              type="button"
-              className="exit-close"
-              aria-label="Đóng thông báo"
-              onClick={() => setShowExitModal(false)}
-            >
-              ×
-            </button>
 
             <h2 id="exit-modal-title">
               Bạn đã đi được {progress}% chặng đường rồi!
@@ -667,7 +659,7 @@ export default function AssessmentApp() {
                 window.scrollTo({ top: 0 })
               }}
             >
-              Tạm dừng và về trang đầu
+              Rời đi
             </button>
 
             <p className="exit-save-note">
@@ -677,23 +669,26 @@ export default function AssessmentApp() {
         </div>
       )}
 
-
+      <button
+        type="button"
+        onClick={openExitModal}
+        style={{
+          position: 'fixed',
+          left: '10px',
+          bottom: '10px',
+          zIndex: 9998,
+        }}
+      >
+        TEST EXIT
+      </button>
 
 
 
 
       <header className="quiz-header">
-        <div className="container quiz-header-inner">
-          <span className="quiz-brand">HOLLAND</span>
-
-          <div className="quiz-meta">
-            <button
-              type="button"
-              className="pause-quiz-button"
-              onClick={openExitModal}
-            >
-              Tạm dừng
-            </button>
+          <div className="container quiz-header-inner">
+            <span className="quiz-brand">HOLLAND</span>
+            <div className="quiz-meta">
               <span className="quiz-counter">
                 {pageIndex + 1}/{pages.length} màn hình
               </span>
