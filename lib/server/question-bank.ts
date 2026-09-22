@@ -23,7 +23,7 @@ export const GROUPS: Record<
   C: { publicNo: 6, name: 'Nghiệp vụ / Quy củ', shortName: 'Nghiệp vụ' },
 }
 
-// 120 mệnh đề = 6 nhóm x 20 mục. Mỗi nhóm gồm 7 "Tôi là người",
+// 108 mệnh đề = 6 nhóm x 18 mục. Mỗi nhóm gồm 7 "Tôi là người",
 // 6 "Tôi có thể" và 7 "Tôi thích". Nội dung này là bộ nội dung triển khai
 // theo yêu cầu dự án; trước khi dùng như công cụ đánh giá chuẩn hóa, hãy thay
 // bằng phiên bản câu hỏi cuối cùng đã được chuyên gia/đơn vị sở hữu nội dung duyệt.
@@ -178,8 +178,8 @@ export const QUESTION_BANK: InternalQuestion[] = orderedRaw.map((q, index) => ({
   displayOrder: index + 1,
 }))
 
-if (QUESTION_BANK.length !== 120) {
-  throw new Error(`Question bank must contain exactly 120 items, got ${QUESTION_BANK.length}`)
+if (QUESTION_BANK.length !== 108) {
+  throw new Error(`Question bank must contain exactly 108 items, got ${QUESTION_BANK.length}`)
 }
 
 export const QUESTION_BY_ID = new Map(QUESTION_BANK.map((q) => [q.id, q]))
