@@ -92,6 +92,65 @@ function isValidPhone(phone: string) {
   return digits.length >= 9 && digits.length <= 12
 }
 
+type ThemeMode = 'light' | 'dark'
+
+function getExitEncouragement(progress: number) {
+  const p = Math.max(0, Math.min(100, Math.round(progress)))
+
+  if (p <= 5) {
+    return 'Bạn chỉ vừa bắt đầu thôi. Dành thêm vài phút để khám phá bản thân nhé!'
+  }
+
+  if (p <= 10) {
+    return 'Khởi đầu luôn là bước quan trọng nhất. Tiếp tục thêm một chút nhé!'
+  }
+
+  if (p <= 20) {
+    return 'Bạn đang làm rất tốt. Những lựa chọn đầu tiên đang dần tạo nên bức tranh về bạn.'
+  }
+
+  if (p <= 30) {
+    return 'Bạn đã đi được gần một phần ba hành trình rồi. Đừng dừng lại lúc này!'
+  }
+
+  if (p <= 40) {
+    return 'Xu hướng sở thích của bạn đang dần được hình thành. Tiếp tục nhé!'
+  }
+
+  if (p <= 50) {
+    return 'Gần nửa chặng đường rồi! Chỉ cần thêm một chút nữa thôi.'
+  }
+
+  if (p <= 60) {
+    return 'Bạn đã vượt qua nửa hành trình. Kết quả đang ngày càng rõ hơn!'
+  }
+
+  if (p <= 70) {
+    return 'Hơn nửa bài trắc nghiệm đã hoàn thành. Bạn đang tiến rất tốt!'
+  }
+
+  if (p <= 80) {
+    return 'Bạn đang rất gần kết quả. Đừng bỏ lỡ những gì mình đã hoàn thành nhé!'
+  }
+
+  if (p <= 90) {
+    return 'Chỉ còn một đoạn ngắn nữa thôi. Nhóm nổi trội của bạn sắp được hé lộ!'
+  }
+
+  if (p <= 95) {
+    return 'Gần tới đích rồi! Chỉ còn vài lựa chọn nữa để khám phá kết quả của bạn.'
+  }
+
+  return 'Bạn gần như đã hoàn thành! Đừng rời đi khi kết quả chỉ còn cách vài bước cuối.'
+}
+
+
+
+
+
+
+
+
 export default function AssessmentApp() {
   const [phase, setPhase] = useState<Phase>('landing')
   const [form, setForm] = useState<StudentInfo>(EMPTY_FORM)
@@ -103,6 +162,10 @@ export default function AssessmentApp() {
   const [error, setError] = useState('')
   const [result, setResult] = useState<PublicAssessmentResult | null>(null)
   const [sync, setSync] = useState<SyncStatus | null>(null)
+  const [theme, setTheme] = useState<ThemeMode>('light')
+  const [themeReady, setThemeReady] = useState(false)
+  const [showExitModal, setShowExitModal] = useState(false)
+  const [allowExit, setAllowExit] = useState(false)
   const [hydrated, setHydrated] = useState(false)
   const [hasResume, setHasResume] = useState(false)
   const submittingRef = useRef(false)
@@ -124,6 +187,46 @@ export default function AssessmentApp() {
   }, [])
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem('holland-theme')
+
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      setTheme(savedTheme)
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      setTheme(prefersDark ? 'dark' : 'light')
+    }
+
+    setThemeReady(true)
+  }, [])
+
+  useEffect(() => {
+    if (!themeReady) return
+
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('holland-theme', theme)
+  }, [theme, themeReady])
+
+
+  useEffect(() => {
+    if (phase !== 'quiz') return
+
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (allowExit) return
+
+      event.preventDefault()
+      event.returnValue = ''
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+    }
+  }, [phase, allowExit])
+
+
+
+  useEffect(() => {
     if (!hydrated) return
     if (phase === 'result' || phase === 'landing') return
     savePersisted({
@@ -135,15 +238,6 @@ export default function AssessmentApp() {
     })
   }, [hydrated, phase, form, selected, pageIndex, questions])
 
-  useEffect(() => {
-    if (phase !== 'quiz') return
-    const handler = (e: BeforeUnloadEvent) => {
-      e.preventDefault()
-      e.returnValue = ''
-    }
-    window.addEventListener('beforeunload', handler)
-    return () => window.removeEventListener('beforeunload', handler)
-  }, [phase])
 
   const pages = useMemo(() => {
     const order: QuestionSection[] = ['self', 'can', 'like']
@@ -161,6 +255,38 @@ export default function AssessmentApp() {
   const progress = pages.length ? Math.round(((pageIndex + 1) / pages.length) * 100) : 0
   const selectedCount = selected.size
 
+  const themeToggle = (
+  <button
+    type="button"
+    className="theme-toggle"
+    aria-label={
+      theme === 'light'
+        ? 'Chuyển sang chế độ tối'
+        : 'Chuyển sang chế độ sáng'
+    }
+    title={
+      theme === 'light'
+        ? 'Chế độ tối'
+        : 'Chế độ sáng'
+    }
+    onClick={() => {
+      setTheme((current) =>
+        current === 'light' ? 'dark' : 'light'
+      )
+    }}
+  >
+    {theme === 'light' ? '🌙' : '☀️'}
+  </button>
+)
+
+  const openExitModal = () => {
+    if (phase !== 'quiz') return
+
+    setShowExitModal(true)
+  }
+
+  
+
   const updateForm = useCallback((field: keyof StudentInfo, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }))
   }, [])
@@ -168,6 +294,8 @@ export default function AssessmentApp() {
   const resume = () => {
     const saved = loadPersisted()
     if (saved?.phase === 'quiz' || saved?.phase === 'instructions' || saved?.phase === 'form') {
+      setAllowExit(false)
+      setShowExitModal(false)
       setPhase(saved.phase)
       setHasResume(false)
       window.scrollTo({ top: 0 })
@@ -185,6 +313,8 @@ export default function AssessmentApp() {
     setError('')
     setEmptyWarning(false)
     setHasResume(false)
+    setShowExitModal(false)
+    setAllowExit(false)
     setPhase('form')
     window.scrollTo({ top: 0 })
   }
@@ -290,6 +420,7 @@ export default function AssessmentApp() {
   if (phase === 'landing') {
     return (
       <main className="site-shell">
+        {themeToggle}
         <section className="hero container">
           <div className="hero-copy">
             <span className="pill">TRẮC NGHIỆM SỞ THÍCH HOLLAND</span>
@@ -354,6 +485,7 @@ export default function AssessmentApp() {
   if (phase === 'form') {
     return (
       <main className="center-shell">
+        {themeToggle}
         <section className="panel form-panel">
           <button className="back-link" onClick={() => setPhase('landing')}>
             ← Quay lại
@@ -432,6 +564,7 @@ export default function AssessmentApp() {
   if (phase === 'instructions') {
     return (
       <main className="center-shell">
+        {themeToggle}
         <section className="panel instruction-panel">
           <span className="pill">BƯỚC 2 / 3</span>
           <h2>Cách làm rất đơn giản</h2>
@@ -474,12 +607,93 @@ export default function AssessmentApp() {
   }
 
   if (phase === 'quiz') {
-    return (
-      <main className="quiz-shell">
-        <header className="quiz-header">
-          <div className="container quiz-header-inner">
-            <span className="quiz-brand">HOLLAND</span>
-            <div className="quiz-meta">
+  return (
+    <main className="quiz-shell">
+      {themeToggle}
+
+      {showExitModal && (
+        <div
+          className="exit-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="exit-modal-title"
+        >
+          <div className="exit-modal">
+            <button
+              type="button"
+              className="exit-close"
+              aria-label="Đóng thông báo"
+              onClick={() => setShowExitModal(false)}
+            >
+              ×
+            </button>
+
+            <h2 id="exit-modal-title">
+              Bạn đã đi được {progress}% chặng đường rồi!
+            </h2>
+
+            <p className="exit-encouragement">
+              {getExitEncouragement(progress)}
+            </p>
+
+            <p className="exit-question">
+              Bạn có chắc chắn muốn rời đi và bỏ lỡ kết quả không?
+            </p>
+
+            <button
+              type="button"
+              className="exit-continue"
+              onClick={() => setShowExitModal(false)}
+            >
+              Tiếp tục làm bài
+            </button>
+
+            <button
+              type="button"
+              className="exit-leave"
+              onClick={() => {
+                savePersisted({
+                  phase: 'quiz',
+                  form,
+                  selected: Array.from(selected),
+                  pageIndex,
+                  questions: questions.length === 120 ? questions : undefined,
+                })
+
+                setAllowExit(true)
+                setShowExitModal(false)
+                setHasResume(true)
+                setPhase('landing')
+                window.scrollTo({ top: 0 })
+              }}
+            >
+              Tạm dừng và về trang đầu
+            </button>
+
+            <p className="exit-save-note">
+              Tiến độ hiện tại đã được lưu trên thiết bị này.
+            </p>
+          </div>
+        </div>
+      )}
+
+
+
+
+
+
+      <header className="quiz-header">
+        <div className="container quiz-header-inner">
+          <span className="quiz-brand">HOLLAND</span>
+
+          <div className="quiz-meta">
+            <button
+              type="button"
+              className="pause-quiz-button"
+              onClick={openExitModal}
+            >
+              Tạm dừng
+            </button>
               <span className="quiz-counter">
                 {pageIndex + 1}/{pages.length} màn hình
               </span>
@@ -568,6 +782,7 @@ export default function AssessmentApp() {
     const topLabel = result.topGroupNos.map((n) => `Nhóm ${n}`).join(' & ')
     return (
       <main className="result-shell">
+         {themeToggle}
         <section className="result-card">
           <div className="success-icon" aria-hidden="true">
             ✓

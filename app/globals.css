@@ -138,3 +138,446 @@ a { color: inherit; }
   .quiz-meta { gap: 8px; }
   .quiz-selected { font-size: 12px; padding: 3px 8px; }
 }
+
+
+
+/* ==================================================
+   DARK / LIGHT MODE
+================================================== */
+
+:root {
+  color-scheme: light;
+
+  --theme-bg: #f6f8fb;
+  --theme-surface: #ffffff;
+  --theme-surface-2: #f1f5f9;
+
+  --theme-text: #172033;
+  --theme-text-secondary: #64748b;
+
+  --theme-border: #e2e8f0;
+
+  --theme-primary: #2563eb;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+
+  --theme-bg: #0f172a;
+  --theme-surface: #182235;
+  --theme-surface-2: #202c42;
+
+  --theme-text: #f8fafc;
+  --theme-text-secondary: #b6c2d2;
+
+  --theme-border: #334155;
+
+  --theme-primary: #60a5fa;
+}
+
+
+/* NỀN CHUNG */
+
+html,
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* CÁC MÀN HÌNH */
+
+html[data-theme='dark'] .site-shell,
+html[data-theme='dark'] .center-shell,
+html[data-theme='dark'] .quiz-shell,
+html[data-theme='dark'] .result-shell {
+  background: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+
+/* CARD */
+
+html[data-theme='dark'] .panel,
+html[data-theme='dark'] .quiz-card,
+html[data-theme='dark'] .result-card,
+html[data-theme='dark'] .hero-card,
+html[data-theme='dark'] .mock-window {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+
+/* CÂU HỎI */
+
+html[data-theme='dark'] .choice-card {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+html[data-theme='dark'] .choice-card:hover {
+  background: var(--theme-surface-2);
+}
+
+html[data-theme='dark'] .choice-card.selected {
+  background: rgba(96, 165, 250, 0.12);
+  border-color: var(--theme-primary);
+}
+
+
+/* FORM */
+
+html[data-theme='dark'] input,
+html[data-theme='dark'] textarea,
+html[data-theme='dark'] select {
+  background: var(--theme-surface-2);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+html[data-theme='dark'] input::placeholder,
+html[data-theme='dark'] textarea::placeholder {
+  color: #8493a8;
+}
+
+
+/* TEXT PHỤ */
+
+html[data-theme='dark'] .muted,
+html[data-theme='dark'] .microcopy,
+html[data-theme='dark'] .page-note,
+html[data-theme='dark'] .section-head p {
+  color: var(--theme-text-secondary);
+}
+
+
+/* HEADER BÀI TEST */
+
+html[data-theme='dark'] .quiz-header {
+  background: rgba(15, 23, 42, 0.96);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+
+/* THANH TIẾN ĐỘ */
+
+html[data-theme='dark'] .progress-track,
+html[data-theme='dark'] .score-track {
+  background: var(--theme-surface-2);
+}
+
+
+/* KẾT QUẢ */
+
+html[data-theme='dark'] .result-row,
+html[data-theme='dark'] .top-result {
+  color: var(--theme-text);
+}
+
+html[data-theme='dark'] .top-result {
+  background: var(--theme-surface-2);
+}
+
+
+/* ==================================================
+   NÚT CHUYỂN DARK / LIGHT
+================================================== */
+
+.theme-toggle {
+  position: fixed;
+
+  top: max(16px, env(safe-area-inset-top));
+  right: 16px;
+
+  width: 46px;
+  height: 46px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--theme-surface);
+  color: var(--theme-text);
+
+  border: 1px solid var(--theme-border);
+  border-radius: 50%;
+
+  font-size: 21px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 9999;
+
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .theme-toggle {
+    top: max(12px, env(safe-area-inset-top));
+    right: 12px;
+
+    width: 42px;
+    height: 42px;
+
+    font-size: 19px;
+  }
+}
+
+
+/* EXIT POPUP */
+
+.exit-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.62) !important;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.exit-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 420px;
+
+  padding: 28px 22px;
+
+  background: var(--theme-surface, #ffffff) !important;
+  color: var(--theme-text, #172033) !important;
+
+  border: 1px solid var(--theme-border, #e2e8f0);
+  border-radius: 22px;
+
+  text-align: center;
+
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+
+  animation: exitPopup 0.2s ease;
+}
+
+.exit-percentage {
+  width: 76px;
+  height: 76px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--theme-surface-2, #f1f5f9);
+  color: var(--theme-primary, #2563eb);
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.exit-modal h2 {
+  margin: 0 0 12px;
+
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.exit-encouragement {
+  margin: 0 0 14px;
+
+  color: var(--theme-text-secondary, #64748b);
+
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.exit-question {
+  margin: 0 0 22px;
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.exit-continue {
+  width: 100%;
+  min-height: 52px;
+
+  border: 0;
+  border-radius: 13px;
+
+  background: var(--theme-primary, #2563eb);
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.exit-leave {
+  width: 100%;
+  min-height: 48px;
+
+  margin-top: 10px;
+
+  border: 1px solid var(--theme-border, #e2e8f0);
+  border-radius: 13px;
+
+  background: transparent;
+  color: var(--theme-text-secondary, #64748b);
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.exit-save-note {
+  margin: 16px 0 0;
+
+  color: var(--theme-text-secondary, #64748b);
+
+  font-size: 13px;
+}
+
+@keyframes exitPopup {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .exit-overlay {
+    padding: 16px !important;
+  }
+
+  .exit-modal {
+    max-width: 360px;
+    padding: 24px 18px;
+  }
+
+  .exit-modal h2 {
+    font-size: 20px;
+  }
+}
+
+
+
+/* Nút đóng popup */
+
+.exit-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+  color: var(--theme-text-secondary);
+
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.exit-close:hover {
+  background: var(--theme-surface-2);
+  color: var(--theme-text);
+}
+
+.exit-close:active {
+  transform: scale(0.92);
+}
+
+
+/* Nút tạm dừng trong header */
+
+.pause-quiz-button {
+  min-height: 36px;
+  padding: 7px 12px;
+
+  border: 1px solid var(--theme-border);
+  border-radius: 9px;
+
+  background: var(--theme-surface);
+  color: var(--theme-text-secondary);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.pause-quiz-button:hover {
+  color: var(--theme-text);
+  background: var(--theme-surface-2);
+}
+
+@media (max-width: 600px) {
+  .pause-quiz-button {
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .exit-close {
+    top: 10px;
+    right: 10px;
+
+    width: 34px;
+    height: 34px;
+  }
+}
