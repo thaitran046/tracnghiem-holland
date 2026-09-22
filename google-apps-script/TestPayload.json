@@ -1,0 +1,39 @@
+{
+  "submittedAt": "2026-09-22T01:00:00.000Z",
+  "fullName": "Nguyễn Văn A",
+  "phone": "0901234567",
+  "email": "hocsinh@example.com",
+  "grade": "12A1",
+  "school": "THPT Demo",
+  "group1": "12/20",
+  "group2": "8/20",
+  "group3": "15/20",
+  "group4": "10/20",
+  "group5": "6/20",
+  "group6": "4/20",
+  "dominantGroup": "Nhóm 3",
+  "dominantGroupInternal": "Nghệ thuật",
+  "secondGroup": "Nhóm 1 (12/20)",
+  "secondGroupInternal": "Kỹ thuật",
+  "thirdGroup": "Nhóm 4 (10/20)",
+  "thirdGroupInternal": "Xã hội",
+  "selectedCount": 55,
+  "totalQuestions": 120,
+  "selectedByGroup": [
+    {
+      "groupNo": 1,
+      "shortName": "Kỹ thuật",
+      "score": 12,
+      "max": 20,
+      "items": ["Yêu thích vận động.", "Thích làm việc với máy móc, dụng cụ."]
+    },
+    {
+      "groupNo": 3,
+      "shortName": "Nghệ thuật",
+      "score": 15,
+      "max": 20,
+      "items": ["Rất sáng tạo.", "Giàu trí tưởng tượng.", "Thích cải tiến và đổi mới."]
+    }
+  ],
+  "token": ""
+}
