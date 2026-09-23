@@ -659,7 +659,7 @@ export default function AssessmentApp() {
                 window.scrollTo({ top: 0 })
               }}
             >
-              Rời đi
+              Tạm đừng về trang đầu
             </button>
 
             <p className="exit-save-note">
@@ -669,18 +669,6 @@ export default function AssessmentApp() {
         </div>
       )}
 
-      <button
-        type="button"
-        onClick={openExitModal}
-        style={{
-          position: 'fixed',
-          left: '10px',
-          bottom: '10px',
-          zIndex: 9998,
-        }}
-      >
-        TEST EXIT
-      </button>
 
 
 
@@ -692,10 +680,21 @@ export default function AssessmentApp() {
               <span className="quiz-counter">
                 {pageIndex + 1}/{pages.length} màn hình
               </span>
+
               <span className="quiz-selected" title="Số mô tả đã chọn">
                 Đã chọn: {selectedCount}
               </span>
+
+              <button
+                type="button"
+                className="pause-quiz-button"
+                onClick={openExitModal}
+              >
+                Tạm dừng
+              </button>
             </div>
+
+
           </div>
           <div
             className="progress-track"
