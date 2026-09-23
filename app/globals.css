@@ -581,3 +581,265 @@ html[data-theme='dark'] .top-result {
     height: 34px;
   }
 }
+
+
+
+
+/* =====================================================
+   MOBILE OPTIMIZATION
+===================================================== */
+
+@media (max-width: 600px) {
+
+  /* ---------- KHUNG CHUNG ---------- */
+
+  body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .quiz-shell {
+    min-height: 100dvh;
+    padding-bottom: 90px;
+  }
+
+
+  /* ---------- HEADER ---------- */
+
+  .quiz-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    padding-top: env(safe-area-inset-top);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .quiz-header-inner {
+    min-height: 58px;
+    gap: 8px;
+  }
+
+  .quiz-brand {
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .quiz-meta {
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  .quiz-counter {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .quiz-selected {
+    display: none;
+  }
+
+  .pause-quiz-button {
+    min-height: 34px;
+    padding: 6px 10px;
+
+    font-size: 12px;
+    white-space: nowrap;
+
+    border-radius: 9px;
+  }
+
+
+  /* ---------- PROGRESS ---------- */
+
+  .progress-wrap {
+    margin-top: 12px;
+  }
+
+  .progress-track {
+    height: 7px;
+    border-radius: 999px;
+  }
+
+
+  /* ---------- PHẦN CÂU HỎI ---------- */
+
+  .quiz-content {
+    padding-top: 18px;
+    padding-bottom: 24px;
+  }
+
+  .section-head {
+    margin-bottom: 16px;
+  }
+
+  .section-head h1,
+  .section-head h2 {
+    font-size: 21px;
+    line-height: 1.3;
+  }
+
+  .section-head p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+
+  /* ---------- CARD CÂU HỎI ---------- */
+
+  .choice-card {
+    width: 100%;
+
+    min-height: 58px;
+
+    padding: 14px 14px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+    line-height: 1.45;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+
+    touch-action: manipulation;
+  }
+
+  .choice-card + .choice-card {
+    margin-top: 9px;
+  }
+
+  .choice-card input {
+    flex: 0 0 auto;
+
+    width: 21px;
+    height: 21px;
+
+    margin-top: 1px;
+  }
+
+  .choice-card:active {
+    transform: scale(0.985);
+  }
+
+
+  /* ---------- NÚT ĐIỀU HƯỚNG ---------- */
+
+  .quiz-actions {
+    position: sticky;
+    bottom: 0;
+
+    z-index: 90;
+
+    margin-left: -14px;
+    margin-right: -14px;
+
+    padding:
+      10px
+      14px
+      max(10px, env(safe-area-inset-bottom));
+
+    background: var(--theme-surface);
+
+    border-top: 1px solid var(--theme-border);
+
+    box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.08);
+  }
+
+  .quiz-actions button {
+    min-height: 50px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    border-radius: 13px;
+
+    touch-action: manipulation;
+  }
+
+
+  /* ---------- POPUP TẠM DỪNG ---------- */
+
+  .exit-overlay {
+    padding:
+      16px
+      16px
+      max(16px, env(safe-area-inset-bottom)) !important;
+
+    align-items: center !important;
+  }
+
+  .exit-modal {
+    width: 100%;
+    max-width: 370px;
+
+    padding: 28px 18px 20px;
+
+    border-radius: 20px;
+  }
+
+  .exit-modal h2 {
+    padding-right: 20px;
+
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .exit-encouragement {
+    font-size: 15px;
+  }
+
+  .exit-question {
+    font-size: 14px;
+  }
+
+  .exit-continue {
+    min-height: 52px;
+  }
+
+  .exit-leave {
+    min-height: 48px;
+  }
+
+  .exit-close {
+    top: 9px;
+    right: 9px;
+
+    width: 36px;
+    height: 36px;
+
+    font-size: 26px;
+  }
+
+
+  /* ---------- DARK/LIGHT ---------- */
+
+  .theme-toggle {
+    top: auto;
+
+    right: 14px;
+    bottom: calc(82px + env(safe-area-inset-bottom));
+
+    width: 42px;
+    height: 42px;
+
+    font-size: 18px;
+
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.18);
+  }
+}
