@@ -366,7 +366,7 @@ export default function AssessmentApp() {
 
   const moveNext = async () => {
     const selectedOnPage = currentPage.some((q) => selected.has(q.id))
-    if (!selectedOnPage && !emptyWarning) {
+    if (!selectedOnPage) {
       setEmptyWarning(true)
       return
     }
@@ -591,7 +591,7 @@ export default function AssessmentApp() {
             <div>
               <b>4</b>
               <p>
-                Nếu một màn hình không có mô tả nào phù hợp, bạn có thể xác nhận và tiếp tục.
+                  Mỗi màn hình gồm 6 mệnh đề. Bạn cần chọn <strong>ít nhất 1 mệnh đề</strong> phù hợp với mình trước khi tiếp tục.
               </p>
             </div>
           </div>
@@ -737,13 +737,15 @@ export default function AssessmentApp() {
           </div>
 
           {emptyWarning && (
-            <div className="empty-warning" role="status">
-              <strong>Chưa có mô tả nào được chọn ở màn hình này.</strong>
+            <div className="empty-warning" role="alert">
+              <strong>Vui lòng chọn ít nhất 1 mệnh đề.</strong>
               <span>
-                Nếu đúng là không có nội dung nào phù hợp, bấm “Tiếp tục” thêm một lần để xác nhận.
+                Bạn cần chọn tối thiểu 1 trong 6 mệnh đề trước khi tiếp tục.
               </span>
             </div>
           )}
+
+
           {error && (
             <div className="error-box quiz-error" role="alert">
               {error}
