@@ -23,7 +23,7 @@ const EXPECTED_TOKEN = ''; // Tùy chọn: ví dụ 'abc123-secret'
 
 // *** BẮT BUỘC: email tư vấn viên nhận kết quả ***
 const ADVISOR_EMAILS = [
-  'thaitran046@gmail.com'
+  'hangluong.ggads@gmail.com'
 ];
 // Có thể thêm nhiều email, cách nhau bằng dấu phẩy trong ADVISOR_EMAIL hoặc dùng mảng:
 // const ADVISOR_EMAIL = 'a@gmail.com, b@gmail.com';
