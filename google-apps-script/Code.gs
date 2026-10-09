@@ -210,10 +210,17 @@ function sendAdvisorEmail_(data) {
     '<div style="font-size:20px;font-weight:800;margin-top:4px;">' +
     escapeHtml_(data.dominantGroup || '—') +
     (data.dominantGroupInternal
-      ? ' <span style="font-size:15px;font-weight:600;color:#334;">(' +
+      ? ' <span style="font-size:16px;font-weight:600;color:#334;">(' +
         escapeHtml_(data.dominantGroupInternal) +
         ')</span>'
       : '') +
+    '</div>' +
+    '<div style="margin-top:12px;margin-bottom:12px;padding:12px 16px;background:#fff8db;border-left:5px solid #f59e0b;border-radius:8px;">' +
+    '<div style="font-size:13px;color:#854d0e;font-weight:700;">🌟 Quan tâm thị trường quốc tế: ' +
+    '<span style="font-size:16px;color:#92400e;font-weight:900;background:#fde68a;padding:3px 12px;border-radius:6px;margin-left:6px;border:1px solid #f59e0b;">' +
+    escapeHtml_(data.laborMarketInterest || 'Chưa chọn') +
+    '</span></div>' +
+    '<div style="font-size:12px;color:#713f12;margin-top:4px;">(Câu hỏi: <i>Bạn đang quan tâm thị trường lao động trong nước hay quốc tế?</i>)</div>' +
     '</div>' +
     (data.secondGroup
       ? '<div style="margin-top:8px;font-size:13px;color:#51677a;">Top 2: ' +
@@ -227,13 +234,6 @@ function sendAdvisorEmail_(data) {
         (data.thirdGroupInternal ? ' · ' + escapeHtml_(data.thirdGroupInternal) : '') +
         '</div>'
       : '') +
-    '</div>' +
-    '<div style="margin-top:14px;padding:16px 18px;background:#fff8e6;border:2px solid #f59e0b;border-radius:12px;">' +
-    '<div style="font-size:12px;color:#b45309;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">CÂU HỎI KHẢO SÁT THỊ TRƯỜNG LAO ĐỘNG</div>' +
-    '<div style="font-size:15px;color:#1f2937;font-weight:700;margin-top:6px;">Bạn đang quan tâm thị trường lao động trong nước hay quốc tế?</div>' +
-    '<div style="margin-top:8px;font-size:16px;color:#b45309;font-weight:800;">👉 Trả lời: <span style="background:#fde68a;padding:3px 12px;border-radius:6px;border:1px solid #f59e0b;color:#92400e;">' +
-    escapeHtml_(data.laborMarketInterest || 'Không có dữ liệu / Chưa chọn') +
-    '</span></div>' +
     '</div>' +
     '<div style="margin-top:22px;font-weight:800;font-size:15px;">Tóm tắt đáp án đã chọn</div>' +
     selectedHtml +
