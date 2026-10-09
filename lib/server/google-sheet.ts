@@ -13,6 +13,7 @@ export type GoogleSheetSummary = {
   email: string
   grade: string
   school: string
+  laborMarketInterest?: string
   group1: string
   group2: string
   group3: string

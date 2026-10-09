@@ -26,6 +26,7 @@ export type StudentInfo = {
   email: string
   grade: string
   school: string
+  laborMarketInterest: string
 }
 
 export type SyncStatus = {

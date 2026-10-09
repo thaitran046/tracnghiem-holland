@@ -32,6 +32,7 @@ const EMPTY_FORM: StudentInfo = {
   email: '',
   grade: '',
   school: '',
+  laborMarketInterest: '',
 }
 
 const SECTION_META: Record<QuestionSection, { eyebrow: string; title: string; hint: string }> = {
@@ -547,6 +548,19 @@ export default function AssessmentApp() {
                 />
               </label>
             </div>
+            <label>
+              Bạn đang quan tâm thị trường lao động trong nước hay quốc tế? *
+              <select
+                required
+                value={form.laborMarketInterest}
+                onChange={(e) => updateForm('laborMarketInterest', e.target.value)}
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--input-bg)', color: 'var(--text-color)', fontSize: '1rem', marginTop: '6px' }}
+              >
+                <option value="">-- Chọn --</option>
+                <option value="Có">Có</option>
+                <option value="Không">Không</option>
+              </select>
+            </label>
             {error && (
               <div className="error-box" role="alert">
                 {error}

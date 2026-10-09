@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
       email: clean(studentRaw.email, 160),
       grade: clean(studentRaw.grade, 80),
       school: clean(studentRaw.school, 180),
+      laborMarketInterest: clean(studentRaw.laborMarketInterest, 10),
     }
 
     if (!student.fullName || !student.phone) {
@@ -61,6 +62,7 @@ export async function POST(request: NextRequest) {
       email: student.email,
       grade: student.grade,
       school: student.school,
+      laborMarketInterest: student.laborMarketInterest,
       group1: groupText(1),
       group2: groupText(2),
       group3: groupText(3),

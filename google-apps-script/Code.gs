@@ -48,7 +48,8 @@ const HEADERS = [
   'Top 3',
   'Tên Top 3',
   'Tổng số ô đã tick',
-  'Tổng số mệnh đề'
+  'Tổng số mệnh đề',
+  'Quan tâm thị trường quốc tế'
 ];
 
 function doGet() {
@@ -98,7 +99,8 @@ function doPost(e) {
       data.thirdGroup || '',
       data.thirdGroupInternal || '',
       Number(data.selectedCount || 0),
-      Number(data.totalQuestions || 108)
+      Number(data.totalQuestions || 108),
+      data.laborMarketInterest || ''
     ]);
 
     // 2) Gửi email tư vấn viên
@@ -224,6 +226,11 @@ function sendAdvisorEmail_(data) {
         (data.thirdGroupInternal ? ' · ' + escapeHtml_(data.thirdGroupInternal) : '') +
         '</div>'
       : '') +
+    (data.laborMarketInterest
+      ? '<div style="margin-top:8px;font-size:13px;color:#d9534f;font-weight:bold;">Quan tâm thị trường lao động quốc tế: ' +
+        escapeHtml_(data.laborMarketInterest) +
+        '</div>'
+      : '') +
     '</div>' +
     '<div style="margin-top:22px;font-weight:800;font-size:15px;">Tóm tắt đáp án đã chọn</div>' +
     selectedHtml +
@@ -265,7 +272,8 @@ function sendAdvisorEmail_(data) {
     (data.dominantGroup || '') +
     ' (' +
     (data.dominantGroupInternal || '') +
-    ')\n';
+    ')\nQuan tâm thị trường quốc tế: ' +
+    (data.laborMarketInterest || '') + '\n';
 
   MailApp.sendEmail({
     to: ADVISOR_EMAIL,
