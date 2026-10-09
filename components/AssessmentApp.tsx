@@ -333,7 +333,7 @@ export default function AssessmentApp() {
       return
     }
     if (!form.laborMarketInterest) {
-      setError('Vui lòng trả lời câu hỏi khảo sát thị trường lao động.')
+      setError('Vui lòng chọn thị trường lao động bạn quan tâm (Trong nước hoặc Quốc tế).')
       return
     }
 
@@ -561,23 +561,23 @@ export default function AssessmentApp() {
                   <input
                     type="radio"
                     name="laborMarketInterest"
-                    value="Có"
-                    checked={form.laborMarketInterest === 'Có'}
+                    value="Trong nước"
+                    checked={form.laborMarketInterest === 'Trong nước'}
                     onChange={(e) => updateForm('laborMarketInterest', e.target.value)}
                     style={{ width: '18px', height: '18px', accentColor: '#175fc7' }}
                   />
-                  <span>Có</span>
+                  <span>Trong nước</span>
                 </label>
                 <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 500, margin: 0 }}>
                   <input
                     type="radio"
                     name="laborMarketInterest"
-                    value="Không"
-                    checked={form.laborMarketInterest === 'Không'}
+                    value="Quốc tế"
+                    checked={form.laborMarketInterest === 'Quốc tế'}
                     onChange={(e) => updateForm('laborMarketInterest', e.target.value)}
                     style={{ width: '18px', height: '18px', accentColor: '#175fc7' }}
                   />
-                  <span>Không</span>
+                  <span>Quốc tế</span>
                 </label>
               </div>
             </div>

@@ -50,7 +50,7 @@ const HEADERS = [
   'Tên Top 3',
   'Tổng số ô đã tick',
   'Tổng số mệnh đề',
-  'Quan tâm thị trường quốc tế'
+  'Thị trường lao động quan tâm'
 ];
 
 function doGet() {
@@ -198,7 +198,7 @@ function sendAdvisorEmail_(data) {
     row_('Email', data.email || '—') +
     row_('Lớp', data.grade || '—') +
     row_('Trường', data.school || '—') +
-    row_('Quan tâm TT lao động', data.laborMarketInterest || '—') +
+    row_('Thị trường lao động', data.laborMarketInterest || '—') +
     row_('Thời gian', when) +
     row_('Đã chọn', (data.selectedCount || 0) + ' / ' + (data.totalQuestions || 108)) +
     '</table>' +
@@ -217,7 +217,7 @@ function sendAdvisorEmail_(data) {
       : '') +
     '</div>' +
     '<div style="margin-top:12px;margin-bottom:12px;padding:12px 16px;background:#fff8db;border-left:5px solid #f59e0b;border-radius:8px;">' +
-    '<div style="font-size:13px;color:#854d0e;font-weight:700;">🌟 Quan tâm thị trường quốc tế: ' +
+    '<div style="font-size:13px;color:#854d0e;font-weight:700;">🌟 Thị trường lao động quan tâm: ' +
     '<span style="font-size:16px;color:#92400e;font-weight:900;background:#fde68a;padding:3px 12px;border-radius:6px;margin-left:6px;border:1px solid #f59e0b;">' +
     escapeHtml_(data.laborMarketInterest || 'Chưa chọn') +
     '</span></div>' +
