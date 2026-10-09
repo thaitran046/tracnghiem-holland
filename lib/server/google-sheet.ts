@@ -33,8 +33,11 @@ export type GoogleSheetSummary = {
   token?: string
 }
 
+const DEFAULT_APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbxGvQOBQRBPP8WZF3IkSv7u2p2yfpJXEO81Cbid-wK_NpkX4Mr-74NY5lZV_IJirRlE/exec'
+
 export async function sendToGoogleSheet(summary: GoogleSheetSummary) {
-  const url = process.env.GOOGLE_APPS_SCRIPT_URL?.trim()
+  const url = process.env.GOOGLE_APPS_SCRIPT_URL?.trim() || DEFAULT_APPS_SCRIPT_URL
   const token = process.env.GOOGLE_APPS_SCRIPT_TOKEN?.trim()
 
   if (!url) {
