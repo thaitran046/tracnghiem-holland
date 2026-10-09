@@ -22,6 +22,7 @@ const SHEET_NAME = 'KetQuaHolland';
 const EXPECTED_TOKEN = ''; // Tùy chọn: ví dụ 'abc123-secret'
 
 // *** BẮT BUỘC: email tư vấn viên nhận kết quả ***
+const ADVISOR_EMAIL = 'hangluong.ggads@gmail.com';
 const ADVISOR_EMAILS = [
   'hangluong.ggads@gmail.com'
 ];
@@ -279,7 +280,7 @@ function sendAdvisorEmail_(data) {
     (data.laborMarketInterest || 'Chưa chọn') + '\n';
 
   MailApp.sendEmail({
-    to: ADVISOR_EMAIL,
+    to: recipientEmail || ADVISOR_EMAIL,
     subject: subject,
     htmlBody: html,
     body: plain,
