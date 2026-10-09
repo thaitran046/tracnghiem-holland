@@ -197,6 +197,7 @@ function sendAdvisorEmail_(data) {
     row_('Email', data.email || '—') +
     row_('Lớp', data.grade || '—') +
     row_('Trường', data.school || '—') +
+    row_('Quan tâm TT lao động', data.laborMarketInterest || '—') +
     row_('Thời gian', when) +
     row_('Đã chọn', (data.selectedCount || 0) + ' / ' + (data.totalQuestions || 108)) +
     '</table>' +
@@ -226,11 +227,13 @@ function sendAdvisorEmail_(data) {
         (data.thirdGroupInternal ? ' · ' + escapeHtml_(data.thirdGroupInternal) : '') +
         '</div>'
       : '') +
-    (data.laborMarketInterest
-      ? '<div style="margin-top:8px;font-size:13px;color:#d9534f;font-weight:bold;">Quan tâm thị trường lao động quốc tế: ' +
-        escapeHtml_(data.laborMarketInterest) +
-        '</div>'
-      : '') +
+    '</div>' +
+    '<div style="margin-top:14px;padding:16px 18px;background:#fff8e6;border:2px solid #f59e0b;border-radius:12px;">' +
+    '<div style="font-size:12px;color:#b45309;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;">CÂU HỎI KHẢO SÁT THỊ TRƯỜNG LAO ĐỘNG</div>' +
+    '<div style="font-size:15px;color:#1f2937;font-weight:700;margin-top:6px;">Bạn đang quan tâm thị trường lao động trong nước hay quốc tế?</div>' +
+    '<div style="margin-top:8px;font-size:16px;color:#b45309;font-weight:800;">👉 Trả lời: <span style="background:#fde68a;padding:3px 12px;border-radius:6px;border:1px solid #f59e0b;color:#92400e;">' +
+    escapeHtml_(data.laborMarketInterest || 'Không có dữ liệu / Chưa chọn') +
+    '</span></div>' +
     '</div>' +
     '<div style="margin-top:22px;font-weight:800;font-size:15px;">Tóm tắt đáp án đã chọn</div>' +
     selectedHtml +
@@ -272,8 +275,8 @@ function sendAdvisorEmail_(data) {
     (data.dominantGroup || '') +
     ' (' +
     (data.dominantGroupInternal || '') +
-    ')\nQuan tâm thị trường quốc tế: ' +
-    (data.laborMarketInterest || '') + '\n';
+    ')\n\n[KHẢO SÁT] Bạn đang quan tâm thị trường lao động trong nước hay quốc tế?: ' +
+    (data.laborMarketInterest || 'Chưa chọn') + '\n';
 
   MailApp.sendEmail({
     to: ADVISOR_EMAIL,

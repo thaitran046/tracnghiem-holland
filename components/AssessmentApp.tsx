@@ -332,6 +332,10 @@ export default function AssessmentApp() {
       setError('Số điện thoại chưa hợp lệ (cần 9–12 chữ số).')
       return
     }
+    if (!form.laborMarketInterest) {
+      setError('Vui lòng trả lời câu hỏi khảo sát thị trường lao động.')
+      return
+    }
 
     setLoading(true)
     try {
@@ -548,19 +552,35 @@ export default function AssessmentApp() {
                 />
               </label>
             </div>
-            <label>
-              Bạn đang quan tâm thị trường lao động trong nước hay quốc tế? *
-              <select
-                required
-                value={form.laborMarketInterest}
-                onChange={(e) => updateForm('laborMarketInterest', e.target.value)}
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--input-bg)', color: 'var(--text-color)', fontSize: '1rem', marginTop: '6px' }}
-              >
-                <option value="">-- Chọn --</option>
-                <option value="Có">Có</option>
-                <option value="Không">Không</option>
-              </select>
-            </label>
+            <div style={{ marginTop: '14px', marginBottom: '8px' }}>
+              <div style={{ fontWeight: 600, marginBottom: '8px', fontSize: '0.95rem' }}>
+                Bạn đang quan tâm thị trường lao động trong nước hay quốc tế? *
+              </div>
+              <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 500, margin: 0 }}>
+                  <input
+                    type="radio"
+                    name="laborMarketInterest"
+                    value="Có"
+                    checked={form.laborMarketInterest === 'Có'}
+                    onChange={(e) => updateForm('laborMarketInterest', e.target.value)}
+                    style={{ width: '18px', height: '18px', accentColor: '#175fc7' }}
+                  />
+                  <span>Có</span>
+                </label>
+                <label style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontWeight: 500, margin: 0 }}>
+                  <input
+                    type="radio"
+                    name="laborMarketInterest"
+                    value="Không"
+                    checked={form.laborMarketInterest === 'Không'}
+                    onChange={(e) => updateForm('laborMarketInterest', e.target.value)}
+                    style={{ width: '18px', height: '18px', accentColor: '#175fc7' }}
+                  />
+                  <span>Không</span>
+                </label>
+              </div>
+            </div>
             {error && (
               <div className="error-box" role="alert">
                 {error}

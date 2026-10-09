@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       email: clean(studentRaw.email, 160),
       grade: clean(studentRaw.grade, 80),
       school: clean(studentRaw.school, 180),
-      laborMarketInterest: clean(studentRaw.laborMarketInterest, 10),
+      laborMarketInterest: clean(studentRaw.laborMarketInterest, 100),
     }
 
     if (!student.fullName || !student.phone) {
