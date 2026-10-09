@@ -80,6 +80,8 @@ export async function POST(request: NextRequest) {
       selectedByGroup,
     })
 
+    console.log('Google Sheet sync result:', JSON.stringify(sync))
+
     return NextResponse.json({
       result: scored.publicResult,
       sync,

@@ -52,7 +52,7 @@ export async function sendToGoogleSheet(summary: GoogleSheetSummary) {
       body: JSON.stringify({ ...summary, token: token || '' }),
       redirect: 'follow',
       cache: 'no-store',
-      signal: AbortSignal.timeout(15000),
+      signal: AbortSignal.timeout(35000),
     })
 
     const text = await response.text()
